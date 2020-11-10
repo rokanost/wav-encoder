@@ -24,7 +24,9 @@ function encodeSync(audioData, opts) {
     bitDepth: bitDepth
   };
 
-  writeHeader(writer, format, dataView.buffer.byteLength - 8);
+  if(opts.skipHeader)
+    writeHeader(writer, format, dataView.buffer.byteLength - 8);
+  
 
   var err = writeData(writer, format, length, audioData, opts);
 
